@@ -12,7 +12,7 @@ import  setRegisterGlobal from "@/global"
 // 挂载全局样式
 import "@/styles/index.scss"
 const app = createApp(App)
-app.use( setRegisterGlobal)
+app.use(setRegisterGlobal)
 app.use(router)
 app.use(piniaStore)
 

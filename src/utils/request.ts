@@ -1,7 +1,9 @@
 
 // 对axios进行二次封装
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig, type AxiosResponse, type InternalAxiosRequestConfig, type Method } from 'axios'
-import { ElMessage } from 'element-plus'
+import { ElLoading, ElMessage } from 'element-plus'
+import { useInfoStore } from "@/stores/useUserInfo"
+
 
 // 创建axios实例
 const service: AxiosInstance = axios.create({
@@ -11,6 +13,11 @@ const service: AxiosInstance = axios.create({
 
 // 请求拦截
 service.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+    const {token} = useInfoStore()
+    if(token){
+        config.headers!.Authorization = `Bearer ${token}`
+    }
+    ElLoading.service({ fullscreen: true,text:"疯狂加载中……" })
     return config
 }, (error: AxiosError) => {
     return Promise.reject(error)
@@ -18,6 +25,7 @@ service.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 
 // 响应拦截
 service.interceptors.response.use((response: AxiosResponse) => {
+    ElLoading.service({ fullscreen: true,text:"疯狂加载中……" }).close()
     return response.data
 }, (error: AxiosError) => {
     let message = ""

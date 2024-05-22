@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import {LoginApi} from "@/api/userInfo"
+import { LoginApi } from "@/api/userInfo"
 import { useInfoStore } from "@/stores/useUserInfo"
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus';
 import type { LoginParamsType } from '@/api/userInfo/types';
@@ -28,7 +28,6 @@ const handleSubmit = () => {
         if (valid) {
             try {
                 const res = await LoginApi(formData.value)
-                console.log(res);
                 useInfo.token = res.data
                 router.push("/")
                 ElMessage.success("登录成功！")

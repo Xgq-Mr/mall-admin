@@ -16,6 +16,7 @@ export default defineConfig(({ mode })=> {
       port: 8888,
       host: "localhost",
       open: true,
+      base:"./",
       proxy: {
         [env.VITE_APP_BASE_URL]: {
           target: "http://qnadmin.9yuecloud.com/dev-api",
