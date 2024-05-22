@@ -3,7 +3,8 @@
 
 </script>
 <template>
-  
-  <router-view/>
+    首页
 </template>
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+
+</style>
